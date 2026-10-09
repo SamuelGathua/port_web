@@ -5,11 +5,16 @@ export default function Footer({ navigateTo }) {
   const currentYear = 2026;
   const [githubOpen, setGithubOpen] = useState(false);
   const githubRef = useRef(null);
+  const [linkedinOpen, setLinkedinOpen] = useState(false);
+  const linkedinRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (githubRef.current && !githubRef.current.contains(event.target)) {
         setGithubOpen(false);
+      }
+      if (linkedinRef.current && !linkedinRef.current.contains(event.target)) {
+        setLinkedinOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -209,17 +214,86 @@ export default function Footer({ navigateTo }) {
                   </div>
                 )}
               </div>
-              <a
-                href="https://www.linkedin.com/in/samuelgathua"
-                target="_blank"
-                rel="noreferrer"
-                className="w-10 h-10 rounded-xl bg-white/5 hover:bg-[#FF5500] text-gray-300 hover:text-white flex items-center justify-center transition-all duration-200 border border-white/10"
-                aria-label="Samuel Gathua on LinkedIn"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.76v8.37H6.46v-8.37M7.84 6.2a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/>
-                </svg>
-              </a>
+              {/* Intelligent LinkedIn Profiles Selector */}
+              <div className="relative" ref={linkedinRef}>
+                <button
+                  type="button"
+                  onClick={() => setLinkedinOpen(!linkedinOpen)}
+                  className={`w-10 h-10 rounded-xl transition-all duration-200 border flex items-center justify-center cursor-pointer ${
+                    linkedinOpen
+                      ? 'bg-[#FF5500] text-white border-[#FF5500] shadow-lg shadow-[#FF5500]/30'
+                      : 'bg-white/5 hover:bg-[#FF5500] text-gray-300 hover:text-white border-white/10'
+                  }`}
+                  aria-label="View LinkedIn Profiles"
+                  title="View LinkedIn Profiles"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.76v8.37H6.46v-8.37M7.84 6.2a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/>
+                  </svg>
+                </button>
+
+                {/* Intelligent Popover with Both LinkedIn Profiles */}
+                {linkedinOpen && (
+                  <div className="absolute bottom-full left-0 mb-3 w-72 bg-[#16171E] border border-white/15 rounded-2xl p-2.5 shadow-2xl shadow-black/90 z-50 animate-in fade-in slide-in-from-bottom-2 duration-150">
+                    <div className="text-[10px] font-mono-code text-[#FF5500] uppercase font-bold tracking-wider px-2.5 py-1.5 border-b border-white/10 mb-1.5 flex items-center justify-between">
+                      <span>LinkedIn Profiles</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF5500]"></span>
+                    </div>
+
+                    <div className="space-y-1">
+                      <a
+                        href="https://www.linkedin.com/in/samuelgathua"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/link flex items-center justify-between p-2.5 rounded-xl hover:bg-white/10 transition-colors"
+                        onClick={() => setLinkedinOpen(false)}
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 group-hover/link:text-white group-hover/link:border-[#FF5500]/50 transition-colors">
+                            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.76v8.37H6.46v-8.37M7.84 6.2a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/>
+                            </svg>
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-white group-hover/link:text-[#FF5500] transition-colors">
+                              Samuel Gathua
+                            </div>
+                            <div className="text-[10px] font-mono-code text-gray-400">
+                              Lead Systems Engineer
+                            </div>
+                          </div>
+                        </div>
+                        <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 group-hover/link:text-[#FF5500] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                      </a>
+
+                      <a
+                        href="https://www.linkedin.com/in/newton-muraguri/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group/link flex items-center justify-between p-2.5 rounded-xl hover:bg-white/10 transition-colors"
+                        onClick={() => setLinkedinOpen(false)}
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 group-hover/link:text-white group-hover/link:border-[#FF5500]/50 transition-colors">
+                            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.76v8.37H6.46v-8.37M7.84 6.2a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/>
+                            </svg>
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-white group-hover/link:text-[#FF5500] transition-colors">
+                              Newton Muraguri
+                            </div>
+                            <div className="text-[10px] font-mono-code text-gray-400">
+                              Software Engineer
+                            </div>
+                          </div>
+                        </div>
+                        <ArrowUpRight className="w-3.5 h-3.5 text-gray-400 group-hover/link:text-[#FF5500] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                      </a>
+                    </div>
+                  </div>
+                )}
+              </div>
               <a
                 href="mailto:tellersolution@gmail.com"
                 className="w-10 h-10 rounded-xl bg-white/5 hover:bg-[#FF5500] text-gray-300 hover:text-white flex items-center justify-center transition-all duration-200 border border-white/10"
