@@ -49,15 +49,26 @@ export default function ContactPage({ navigateTo }) {
 
     const form = e.target;
     const data = new FormData(form);
+    data.set('form-name', 'contact');
+
     // Convert FormData to URL-encoded string for Netlify Forms
     const urlEncodedData = new URLSearchParams(data).toString();
 
     try {
-      const response = await fetch('/', {
+      let response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: urlEncodedData,
       });
+
+      // If root submission didn't succeed, fallback to /__forms.html
+      if (!response.ok) {
+        response = await fetch('/__forms.html', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: urlEncodedData,
+        });
+      }
 
       if (response.ok) {
         setIsSubmitting(false);
@@ -256,6 +267,7 @@ export default function ContactPage({ navigateTo }) {
                 <form
                   name="contact"
                   method="POST"
+                  action="/"
                   data-netlify="true"
                   data-netlify-honeypot="bot-field"
                   onSubmit={handleSubmit}
