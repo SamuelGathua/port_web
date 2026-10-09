@@ -34,7 +34,7 @@ export default function ContactPage({ navigateTo }) {
   }, []);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('hello@tellersolutions.com');
+    navigator.clipboard.writeText('tellersolution@gmail.com');
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
@@ -114,10 +114,10 @@ export default function ContactPage({ navigateTo }) {
                 <div className="text-xs font-mono-code text-[#7A756D] uppercase">Direct Inquiries</div>
                 <div className="flex items-center justify-between gap-2 p-3 bg-white rounded-2xl border border-[#DFD8CC]">
                   <a
-                    href="mailto:hello@tellersolutions.com"
+                    href="mailto:tellersolution@gmail.com"
                     className="text-sm sm:text-base font-bold text-[#111113] hover:text-[#FF5500] transition-colors truncate"
                   >
-                    hello@tellersolutions.com
+                    tellersolution@gmail.com
                   </a>
                   <button
                     onClick={handleCopyEmail}

@@ -58,7 +58,7 @@ Presented in a high-contrast dark section with an alternating stacked layout and
 - **Footer**: Social links, Nairobi HQ, and back-to-top button.
 
 ### Page 2: Contact Page (`/contact`)
-- **Left Column**: Email (`hello@tellersolutions.com`) with instant click-to-copy, Nairobi headquarters with live **EAT (UTC+3)** clock, and `<24h` SLA pledge.
+- **Left Column**: Email (`tellersolution@gmail.com`) with instant click-to-copy, Nairobi headquarters with live **EAT (UTC+3)** clock, and `<24h` SLA pledge.
 - **Right Column**: Interactive project brief form with name, email, capability pills, budget selectors, message textarea (>=4 rows), full-width submit button, and celebratory confetti state.
 
 ---
