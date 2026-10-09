@@ -159,8 +159,8 @@ export default function ContactPage({ navigateTo }) {
                   <Clock className="w-3.5 h-3.5 text-[#7A756D]" />
                   <span>Monday – Friday: 08:30 – 18:00 EAT</span>
                 </div>
-                <div className="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 p-2.5 rounded-xl flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                <div className="text-xs font-bold text-[#111113] bg-[#FF5500] p-2.5 rounded-xl flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#111113]"></span>
                   <span>Guaranteed response within &lt;24 hours</span>
                 </div>
               </div>
