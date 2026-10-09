@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AboutSection from './components/AboutSection';
 import ServicesSection from './components/ServicesSection';
 import FeaturedProjects from './components/FeaturedProjects';
 import PhilosophyBanner from './components/PhilosophyBanner';
-import ContactPage from './components/ContactPage';
 import Footer from './components/Footer';
+
+// Code-split ContactPage to optimize initial load & reduce TBT
+const ContactPage = lazy(() => import('./components/ContactPage'));
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -56,7 +58,9 @@ export default function App() {
             <PhilosophyBanner navigateTo={navigateTo} />
           </>
         ) : (
-          <ContactPage navigateTo={navigateTo} />
+          <Suspense fallback={<div className="min-h-screen bg-[#F6F2EC] flex items-center justify-center"><div className="w-8 h-8 border-2 border-[#FF5500] border-t-transparent rounded-full animate-spin"></div></div>}>
+            <ContactPage navigateTo={navigateTo} />
+          </Suspense>
         )}
       </main>
 

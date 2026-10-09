@@ -63,7 +63,7 @@ export default function Navbar({ currentPage, navigateTo }) {
               <span className="text-xl sm:text-2xl font-black tracking-tight text-[#111113] group-hover:text-[#FF5500] transition-colors">
                 Teller<span className="text-[#FF5500]">.</span>
               </span>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-[#7E7F87] -mt-1 hidden sm:block">
+              <span className="text-[10px] uppercase font-bold tracking-widest text-[#4D4E55] -mt-1 hidden sm:block">
                 Solutions
               </span>
             </div>
@@ -76,26 +76,26 @@ export default function Navbar({ currentPage, navigateTo }) {
               className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                 currentPage === 'home'
                   ? 'bg-white text-[#111113] shadow-xs'
-                  : 'text-[#A0A1A8] hover:text-white'
+                  : 'text-gray-300 hover:text-white'
               }`}
             >
               Home
             </button>
             <button
               onClick={(e) => handleLinkClick(e, 'services')}
-              className="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-[#A0A1A8] hover:text-white transition-all cursor-pointer"
+              className="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white transition-all cursor-pointer"
             >
               Services
             </button>
             <button
               onClick={(e) => handleLinkClick(e, 'portfolio')}
-              className="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-[#A0A1A8] hover:text-white transition-all cursor-pointer"
+              className="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white transition-all cursor-pointer"
             >
               Work
             </button>
             <button
               onClick={(e) => handleLinkClick(e, 'about')}
-              className="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-[#A0A1A8] hover:text-white transition-all cursor-pointer"
+              className="px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-white transition-all cursor-pointer"
             >
               About
             </button>
@@ -104,7 +104,7 @@ export default function Navbar({ currentPage, navigateTo }) {
               className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
                 currentPage === 'contact'
                   ? 'bg-[#FF5500] text-white shadow-md shadow-[#FF5500]/30'
-                  : 'text-[#A0A1A8] hover:text-[#FF5500]'
+                  : 'text-gray-300 hover:text-[#FF5500]'
               }`}
             >
               Contact
@@ -115,6 +115,7 @@ export default function Navbar({ currentPage, navigateTo }) {
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={(e) => handleLinkClick(e, 'contact')}
+              aria-label="Get in touch with Teller Solutions"
               className="bg-[#FF5500] hover:bg-[#E64A00] text-white font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-full flex items-center gap-1.5 transition-all duration-200 shadow-lg shadow-[#FF5500]/25 hover:shadow-[#FF5500]/40 hover:-translate-y-0.5 cursor-pointer"
             >
               <span>Get in Touch</span>
@@ -126,6 +127,7 @@ export default function Navbar({ currentPage, navigateTo }) {
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={() => navigateTo('contact')}
+              aria-label="Contact Teller Solutions"
               className="bg-[#FF5500] text-white text-xs font-black uppercase tracking-wider px-3.5 py-2 rounded-full shadow-xs cursor-pointer"
             >
               Contact
@@ -133,7 +135,7 @@ export default function Navbar({ currentPage, navigateTo }) {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2.5 rounded-full bg-[#18191E] text-white hover:bg-black transition-colors cursor-pointer"
-              aria-label="Toggle Navigation"
+              aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>

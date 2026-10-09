@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, MapPin, Clock, Copy, Check, Send, Sparkles, ArrowLeft, ArrowUpRight, ShieldCheck, CheckCircle2, AlertCircle } from 'lucide-react';
-import confetti from 'canvas-confetti';
 
 export default function ContactPage({ navigateTo }) {
   const [formData, setFormData] = useState({
@@ -75,6 +74,8 @@ export default function ContactPage({ navigateTo }) {
         setSubmitted(true);
 
         try {
+          const confettiModule = await import('canvas-confetti');
+          const confetti = confettiModule.default;
           confetti({
             particleCount: 100,
             spread: 70,
@@ -102,7 +103,7 @@ export default function ContactPage({ navigateTo }) {
         <div className="mb-8">
           <button
             onClick={() => navigateTo('home')}
-            className="inline-flex items-center gap-2 text-xs font-mono-code font-bold uppercase tracking-wider text-[#64615B] hover:text-[#111113] transition-colors cursor-pointer group"
+            className="inline-flex items-center gap-2 text-xs font-mono-code font-bold uppercase tracking-wider text-[#3D3B37] hover:text-[#111113] transition-colors cursor-pointer group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             <span>Back to Main Page</span>
@@ -126,7 +127,7 @@ export default function ContactPage({ navigateTo }) {
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-[#52504C] max-w-2xl leading-relaxed">
+          <p className="text-lg sm:text-xl text-[#3D3B37] max-w-2xl leading-relaxed">
             Reach out to discuss your next scalable system. Whether you have an existing application in need of re-architecture or an ambitious product launch, our engineers are ready.
           </p>
         </div>
@@ -145,7 +146,7 @@ export default function ContactPage({ navigateTo }) {
 
               {/* Email Address with Copy Button */}
               <div className="space-y-2">
-                <div className="text-xs font-mono-code text-[#7A756D] uppercase">Direct Inquiries</div>
+                <div className="text-xs font-mono-code text-[#45423D] font-bold uppercase">Direct Inquiries</div>
                 <div className="flex items-center justify-between gap-2 p-3 bg-white rounded-2xl border border-[#DFD8CC]">
                   <a
                     href="mailto:tellersolution@gmail.com"
@@ -157,6 +158,7 @@ export default function ContactPage({ navigateTo }) {
                     onClick={handleCopyEmail}
                     className="p-2 rounded-xl bg-[#F6F2EC] hover:bg-[#111113] hover:text-white text-[#111113] transition-colors shrink-0 cursor-pointer"
                     title="Copy Email"
+                    aria-label="Copy Email address"
                   >
                     {copiedEmail ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
                   </button>
@@ -170,7 +172,7 @@ export default function ContactPage({ navigateTo }) {
 
               {/* Location */}
               <div className="space-y-1 pt-2">
-                <div className="text-xs font-mono-code text-[#7A756D] uppercase">Headquarters</div>
+                <div className="text-xs font-mono-code text-[#45423D] font-bold uppercase">Headquarters</div>
                 <div className="flex items-center gap-2 text-base font-bold text-[#111113]">
                   <MapPin className="w-4 h-4 text-[#FF5500]" />
                   <span>Nairobi, Kenya</span>
@@ -179,15 +181,15 @@ export default function ContactPage({ navigateTo }) {
 
               {/* Operating Hours & Live Time */}
               <div className="space-y-2 pt-2 border-t border-[#DFD8CC]">
-                <div className="text-xs font-mono-code text-[#7A756D] uppercase">Operating Hours & Timezone</div>
+                <div className="text-xs font-mono-code text-[#45423D] font-bold uppercase">Operating Hours & Timezone</div>
                 <div className="flex items-center justify-between text-sm">
                   <span className="font-semibold text-[#111113]">East Africa Time (EAT):</span>
                   <span className="font-mono-code font-bold text-[#FF5500] bg-white px-2.5 py-1 rounded-md border border-[#DFD8CC]">
                     {currentTimeEAT || 'UTC+3'}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-[#52504C] pt-1">
-                  <Clock className="w-3.5 h-3.5 text-[#7A756D]" />
+                <div className="flex items-center gap-2 text-xs text-[#383734] pt-1">
+                  <Clock className="w-3.5 h-3.5 text-[#45423D]" />
                   <span>Monday – Friday: 08:30 – 18:00 EAT</span>
                 </div>
                 <div className="text-xs font-bold text-[#111113] bg-[#FF5500] p-2.5 rounded-xl flex items-center gap-2">
@@ -281,14 +283,14 @@ export default function ContactPage({ navigateTo }) {
                     <h2 className="text-xl font-black uppercase tracking-tight text-[#111113]">
                       Project Brief
                     </h2>
-                    <span className="text-xs font-mono-code text-[#7A756D]">
+                    <span className="text-xs font-mono-code font-bold text-[#45423D]">
                       All fields confidential
                     </span>
                   </div>
 
                   {/* Name field */}
                   <div className="space-y-2">
-                    <label htmlFor="name" className="block text-xs font-mono-code font-bold uppercase tracking-wider text-[#33312D]">
+                    <label htmlFor="name" className="block text-xs font-mono-code font-bold uppercase tracking-wider text-[#211F1D]">
                       Your Name <span className="text-[#FF5500]">*</span>
                     </label>
                     <input
@@ -299,13 +301,13 @@ export default function ContactPage({ navigateTo }) {
                       placeholder="e.g. Alex Kamau"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-white border border-[#DFD8CC] focus:border-[#FF5500] focus:ring-2 focus:ring-[#FF5500]/20 text-[#111113] text-sm outline-none transition-all placeholder:text-[#9A958C]"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-white border border-[#DFD8CC] focus:border-[#FF5500] focus:ring-2 focus:ring-[#FF5500]/20 text-[#111113] text-sm outline-none transition-all placeholder:text-[#5E5A53]"
                     />
                   </div>
 
                   {/* Email field */}
                   <div className="space-y-2">
-                    <label htmlFor="email" className="block text-xs font-mono-code font-bold uppercase tracking-wider text-[#33312D]">
+                    <label htmlFor="email" className="block text-xs font-mono-code font-bold uppercase tracking-wider text-[#211F1D]">
                       Work Email <span className="text-[#FF5500]">*</span>
                     </label>
                     <input
@@ -316,17 +318,17 @@ export default function ContactPage({ navigateTo }) {
                       placeholder="e.g. alex@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-white border border-[#DFD8CC] focus:border-[#FF5500] focus:ring-2 focus:ring-[#FF5500]/20 text-[#111113] text-sm outline-none transition-all placeholder:text-[#9A958C]"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-white border border-[#DFD8CC] focus:border-[#FF5500] focus:ring-2 focus:ring-[#FF5500]/20 text-[#111113] text-sm outline-none transition-all placeholder:text-[#5E5A53]"
                     />
                   </div>
 
                   {/* Project Details / Message Textarea (at least 4 rows deep) */}
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <label htmlFor="message" className="block text-xs font-mono-code font-bold uppercase tracking-wider text-[#33312D]">
+                      <label htmlFor="message" className="block text-xs font-mono-code font-bold uppercase tracking-wider text-[#211F1D]">
                         Project Details / Message <span className="text-[#FF5500]">*</span>
                       </label>
-                      <span className="text-[11px] font-mono-code text-[#7A756D]">
+                      <span className="text-[11px] font-mono-code font-bold text-[#45423D]">
                         Min 4 rows
                       </span>
                     </div>
@@ -338,7 +340,7 @@ export default function ContactPage({ navigateTo }) {
                       placeholder="Tell us about the challenges you are facing, existing stack, scalability requirements, and desired timeline..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-2xl bg-white border border-[#DFD8CC] focus:border-[#FF5500] focus:ring-2 focus:ring-[#FF5500]/20 text-[#111113] text-sm outline-none transition-all placeholder:text-[#9A958C] resize-y"
+                      className="w-full px-4 py-3.5 rounded-2xl bg-white border border-[#DFD8CC] focus:border-[#FF5500] focus:ring-2 focus:ring-[#FF5500]/20 text-[#111113] text-sm outline-none transition-all placeholder:text-[#5E5A53] resize-y"
                     ></textarea>
                   </div>
 

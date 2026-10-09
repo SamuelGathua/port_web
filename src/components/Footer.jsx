@@ -41,11 +41,11 @@ export default function Footer({ navigateTo }) {
               </span>
             </div>
             
-            <p className="text-sm text-gray-400 max-w-sm leading-relaxed">
+            <p className="text-sm text-gray-300 max-w-sm leading-relaxed">
               Building Digital Systems That Scale. We engineer high-performance web applications, resilient backend architectures, and modern cloud environments.
             </p>
 
-            <div className="flex items-center gap-2 text-xs font-mono-code text-gray-400 pt-2">
+            <div className="flex items-center gap-2 text-xs font-mono-code text-gray-300 pt-2">
               <MapPin className="w-3.5 h-3.5 text-[#FF5500]" />
               <span>Nairobi, Kenya • East Africa & Global Remote</span>
             </div>
@@ -56,7 +56,7 @@ export default function Footer({ navigateTo }) {
             <div className="text-xs font-mono-code font-bold uppercase tracking-wider text-[#FF5500]">
               Navigation
             </div>
-            <ul className="space-y-2 text-sm text-gray-400">
+            <ul className="space-y-2 text-sm text-gray-300">
               <li>
                 <button
                   onClick={() => {
@@ -129,7 +129,7 @@ export default function Footer({ navigateTo }) {
             <div className="text-xs font-mono-code font-bold uppercase tracking-wider text-[#FF5500]">
               Connect With Us
             </div>
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-gray-300">
               Follow our engineering open-source releases, cloud architectural benchmarks, and tech insights.
             </p>
 

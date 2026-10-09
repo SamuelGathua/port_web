@@ -31,7 +31,7 @@ export default function AboutSection({ navigateTo }) {
           </h2>
 
           {/* Description */}
-          <p className="text-base sm:text-xl text-[#9EA0A8] leading-relaxed mb-10">
+          <p className="text-base sm:text-xl text-gray-300 leading-relaxed mb-10">
             At Teller Solutions, we bridge high-level product design with deep, resilient infrastructure. Whether you are bootstrapping an ambitious venture or refactoring legacy monoliths, we build distributed architectures that never buckle under pressure.
           </p>
 
@@ -39,6 +39,7 @@ export default function AboutSection({ navigateTo }) {
           <div>
             <button
               onClick={() => navigateTo('contact')}
+              aria-label="Speak directly with our Lead Architect"
               className="inline-flex items-center gap-2.5 bg-white/10 hover:bg-[#FF5500] text-white font-bold text-xs uppercase tracking-wider px-6 py-4 rounded-full transition-all duration-200 cursor-pointer group"
             >
               <span>Speak directly with our Lead Architect</span>

@@ -120,6 +120,7 @@ export default function FeaturedProjects() {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Visit live website for ${project.title}`}
                     className="block relative rounded-2xl overflow-hidden bg-[#1A1C24] border border-white/10 hover:border-[#FF5500]/50 transition-all duration-300 group shadow-xl"
                   >
                     {/* Browser Mockup Top Header */}
@@ -129,7 +130,7 @@ export default function FeaturedProjects() {
                         <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
                         <div className="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></div>
                       </div>
-                      <div className="flex items-center gap-1 text-[11px] font-mono-code text-gray-400 bg-white/5 px-3 py-1 rounded-md max-w-xs truncate">
+                      <div className="flex items-center gap-1 text-[11px] font-mono-code text-gray-300 bg-white/5 px-3 py-1 rounded-md max-w-xs truncate">
                         <Globe className="w-3 h-3 text-[#FF5500] shrink-0" />
                         <span className="truncate">{project.url.replace('https://', '')}</span>
                       </div>
@@ -140,9 +141,12 @@ export default function FeaturedProjects() {
                     <div className="relative aspect-[16/10] overflow-hidden bg-[#0A0B0E]">
                       <img
                         src={project.image}
-                        alt={`${project.title} live interface`}
+                        alt={`${project.title} live interface preview`}
                         className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                         loading="lazy"
+                        decoding="async"
+                        width="800"
+                        height="500"
                       />
                       
                       {/* Subtle hover gradient overlay with view site badge */}
@@ -217,6 +221,7 @@ export default function FeaturedProjects() {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Visit live website for ${project.title}`}
                       className="inline-flex items-center gap-3 bg-[#FF5500] hover:bg-[#E64A00] active:scale-95 text-white font-extrabold text-xs uppercase tracking-wider px-7 py-4 rounded-full transition-all duration-200 shadow-xl shadow-[#FF5500]/25 hover:shadow-[#FF5500]/40 hover:-translate-y-0.5 cursor-pointer group"
                     >
                       <span>Visit Site</span>

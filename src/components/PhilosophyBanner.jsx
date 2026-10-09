@@ -22,7 +22,7 @@ export default function PhilosophyBanner({ navigateTo }) {
               POINT. HOW <span className="font-serif-italic normal-case text-[#FF5500] font-normal">you scale</span>{' '}
               DEFINES YOUR FUTURE.
             </h3>
-            <p className="text-base sm:text-lg text-[#5A5750] mt-6 max-w-xl leading-relaxed">
+            <p className="text-base sm:text-lg text-[#2E2C28] mt-6 max-w-xl leading-relaxed">
               We design software architectures built to withstand real-world chaos, millions of concurrent queries, and rapid business pivots without accumulating debilitating technical debt.
             </p>
           </div>
@@ -32,7 +32,7 @@ export default function PhilosophyBanner({ navigateTo }) {
               <div className="text-xs font-mono-code font-bold uppercase tracking-wider text-[#FF5500]">
                 OUR ARCHITECTURAL CREED
               </div>
-              <ul className="text-xs text-[#42403A] space-y-2 font-mono-code">
+              <ul className="text-xs text-[#282724] space-y-2 font-mono-code font-medium">
                 <li>• Zero Single Points of Failure</li>
                 <li>• Automated Observable Telemetry</li>
                 <li>• Deterministic Infrastructure (IaC)</li>
@@ -40,6 +40,7 @@ export default function PhilosophyBanner({ navigateTo }) {
               </ul>
               <button
                 onClick={() => navigateTo('contact')}
+                aria-label="Partner with Teller Solutions"
                 className="w-full mt-2 py-3 px-4 rounded-full bg-[#111113] hover:bg-[#FF5500] text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer"
               >
                 <span>Partner With Us</span>

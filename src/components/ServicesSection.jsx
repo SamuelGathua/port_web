@@ -87,7 +87,7 @@ export default function ServicesSection({ navigateTo }) {
                 {/* Top Row: Number & Icon */}
                 <div>
                   <div className="flex items-center justify-between mb-8">
-                    <span className="font-mono-code text-sm font-black text-[#A09B92] group-hover:text-[#FF5500] transition-colors">
+                    <span className="font-mono-code text-sm font-black text-[#4D4840] group-hover:text-[#FF5500] transition-colors">
                       {service.number}
                     </span>
                     <div className="w-12 h-12 rounded-2xl bg-white group-hover:bg-[#FF5500] text-[#111113] group-hover:text-white flex items-center justify-center transition-all duration-300 shadow-sm">
@@ -104,14 +104,14 @@ export default function ServicesSection({ navigateTo }) {
                   </div>
 
                   {/* Description */}
-                  <p className="text-sm text-[#55534E] leading-relaxed mb-6">
+                  <p className="text-sm text-[#383733] leading-relaxed mb-6">
                     {service.description}
                   </p>
 
                   {/* Bullet features */}
                   <ul className="space-y-2.5 mb-8">
                     {service.features.map((feat, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs text-[#403F3B]">
+                      <li key={idx} className="flex items-start gap-2.5 text-xs text-[#282725] font-medium">
                         <span className="w-4 h-4 rounded-full bg-[#111113] text-white flex items-center justify-center shrink-0 mt-0.5">
                           <Check className="w-2.5 h-2.5 stroke-[3]" />
                         </span>
