@@ -8,7 +8,7 @@ export default function Hero({ navigateTo }) {
   };
 
   return (
-    <section className="relative pt-36 sm:pt-44 pb-24 md:pb-32 px-4 sm:px-8 bg-[#F6F2EC] bg-grain overflow-hidden">
+    <section className="relative pt-20 sm:pt-24 pb-20 md:pb-28 px-4 sm:px-8 bg-[#F6F2EC] bg-grain overflow-hidden">
       <div className="max-w-6xl mx-auto">
         {/* Hero Content: Centered/Expansive Editorial Impact */}
         <div className="flex flex-col items-start max-w-4xl">
