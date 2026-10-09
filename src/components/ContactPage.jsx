@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, MapPin, Clock, Copy, Check, Send, Sparkles, ArrowLeft, ArrowUpRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Mail, MapPin, Clock, Copy, Check, Send, Sparkles, ArrowLeft, ArrowUpRight, ShieldCheck, CheckCircle2, AlertCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function ContactPage({ navigateTo }) {
@@ -12,6 +12,7 @@ export default function ContactPage({ navigateTo }) {
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [currentTimeEAT, setCurrentTimeEAT] = useState('');
 
   // Live Nairobi, Kenya Clock (UTC+3)
@@ -39,27 +40,48 @@ export default function ContactPage({ navigateTo }) {
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
     setIsSubmitting(true);
+    setErrorMessage('');
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitted(true);
+    const form = e.target;
+    const data = new FormData(form);
+    // Convert FormData to URL-encoded string for Netlify Forms
+    const urlEncodedData = new URLSearchParams(data).toString();
 
-      try {
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#FF5500', '#111113', '#22C55E', '#F6F2EC']
-        });
-      } catch (err) {
-        // ignore if canvas-confetti is not loaded
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: urlEncodedData,
+      });
+
+      if (response.ok) {
+        setIsSubmitting(false);
+        setSubmitted(true);
+
+        try {
+          confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#FF5500', '#111113', '#22C55E', '#F6F2EC']
+          });
+        } catch (err) {
+          // ignore if canvas-confetti is not loaded
+        }
+      } else {
+        setIsSubmitting(false);
+        setErrorMessage('Failed to send message. Please try again or chat with us on WhatsApp.');
       }
-    }, 1000);
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setIsSubmitting(false);
+      setErrorMessage('An error occurred. Please try again or chat with us on WhatsApp.');
+    }
   };
 
   return (
@@ -101,8 +123,31 @@ export default function ContactPage({ navigateTo }) {
         {/* 2. Split Layout (Desktop) / Stacked (Mobile) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
-          {/* Left Column (Contact Info) */}
-          <div className="lg:col-span-5 space-y-8">
+          {/* Left Column (Contact Info & WhatsApp) */}
+          <div className="lg:col-span-5 space-y-6">
+
+            {/* WhatsApp Integration Direct Contact Option */}
+            <div className="p-6 bg-emerald-500/10 rounded-3xl border border-emerald-500/20 shadow-xs">
+              <h3 className="text-base font-bold text-[#111113] mb-1.5 flex items-center gap-2">
+                <span>Need a faster response?</span>
+              </h3>
+              <p className="text-xs text-[#52504C] mb-4 leading-relaxed">
+                Chat directly with our engineering team on WhatsApp. We typically reply within a few hours.
+              </p>
+              <a 
+                href="https://wa.link/x7093x"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-5 py-3 rounded-xl shadow-md text-xs font-bold uppercase tracking-wider text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-colors duration-300"
+              >
+                {/* Simple SVG icon for WhatsApp */}
+                <svg className="w-4 h-4 mr-2 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 00-.57-.012c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Chat on WhatsApp
+              </a>
+            </div>
+
             {/* Contact Information Cards */}
             <div className="bg-[#EDE7DD] rounded-3xl p-8 border border-[#DFD8CC] shadow-sm space-y-6">
               <h2 className="text-xs font-mono-code font-bold uppercase tracking-widest text-[#FF5500]">
@@ -192,7 +237,7 @@ export default function ContactPage({ navigateTo }) {
             </div>
           </div>
 
-          {/* Right Column (Contact Form) */}
+          {/* Right Column (Netlify-Enabled Contact Form) */}
           <div className="lg:col-span-7">
             <div className="bg-[#EDE7DD] rounded-3xl p-8 sm:p-10 border border-[#DFD8CC] shadow-sm">
               {submitted ? (
@@ -232,8 +277,19 @@ export default function ContactPage({ navigateTo }) {
                   </div>
                 </div>
               ) : (
-                /* The Contact Form */
-                <form onSubmit={handleSubmit} className="space-y-6">
+                /* The Netlify-Integrated Contact Form */
+                <form
+                  name="contact"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  onSubmit={handleSubmit}
+                  className="space-y-6"
+                >
+                  {/* CRITICAL: Hidden inputs for Netlify routing and bot filtering */}
+                  <input type="hidden" name="form-name" value="contact" />
+                  <input type="hidden" name="bot-field" />
+
                   <div className="flex items-center justify-between border-b border-[#DFD8CC] pb-4">
                     <h2 className="text-xl font-black uppercase tracking-tight text-[#111113]">
                       Project Brief
@@ -245,11 +301,13 @@ export default function ContactPage({ navigateTo }) {
 
                   {/* Name field */}
                   <div className="space-y-2">
-                    <label className="block text-xs font-mono-code font-bold uppercase tracking-wider text-[#33312D]">
+                    <label htmlFor="name" className="block text-xs font-mono-code font-bold uppercase tracking-wider text-[#33312D]">
                       Your Name <span className="text-[#FF5500]">*</span>
                     </label>
                     <input
                       type="text"
+                      id="name"
+                      name="name"
                       required
                       placeholder="e.g. Alex Kamau"
                       value={formData.name}
@@ -260,11 +318,13 @@ export default function ContactPage({ navigateTo }) {
 
                   {/* Email field */}
                   <div className="space-y-2">
-                    <label className="block text-xs font-mono-code font-bold uppercase tracking-wider text-[#33312D]">
+                    <label htmlFor="email" className="block text-xs font-mono-code font-bold uppercase tracking-wider text-[#33312D]">
                       Work Email <span className="text-[#FF5500]">*</span>
                     </label>
                     <input
                       type="email"
+                      id="email"
+                      name="email"
                       required
                       placeholder="e.g. alex@company.com"
                       value={formData.email}
@@ -276,7 +336,7 @@ export default function ContactPage({ navigateTo }) {
                   {/* Project Details / Message Textarea (at least 4 rows deep) */}
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <label className="block text-xs font-mono-code font-bold uppercase tracking-wider text-[#33312D]">
+                      <label htmlFor="message" className="block text-xs font-mono-code font-bold uppercase tracking-wider text-[#33312D]">
                         Project Details / Message <span className="text-[#FF5500]">*</span>
                       </label>
                       <span className="text-[11px] font-mono-code text-[#7A756D]">
@@ -284,6 +344,8 @@ export default function ContactPage({ navigateTo }) {
                       </span>
                     </div>
                     <textarea
+                      id="message"
+                      name="message"
                       required
                       rows={5}
                       placeholder="Tell us about the challenges you are facing, existing stack, scalability requirements, and desired timeline..."
@@ -292,6 +354,14 @@ export default function ContactPage({ navigateTo }) {
                       className="w-full px-4 py-3.5 rounded-2xl bg-white border border-[#DFD8CC] focus:border-[#FF5500] focus:ring-2 focus:ring-[#FF5500]/20 text-[#111113] text-sm outline-none transition-all placeholder:text-[#9A958C] resize-y"
                     ></textarea>
                   </div>
+
+                  {/* Error Notification if Netlify fails */}
+                  {errorMessage && (
+                    <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      <span>{errorMessage}</span>
+                    </div>
+                  )}
 
                   {/* Submit Button (Full-width, distinct color with hover effect and active state) */}
                   <button
