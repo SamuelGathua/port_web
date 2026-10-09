@@ -141,55 +141,88 @@ export default function Navbar({ currentPage, navigateTo }) {
         </div>
       </header>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Right-Side Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-black/60 backdrop-blur-md md:hidden flex flex-col justify-end">
-          <div className="bg-[#18191E] border-t border-white/10 rounded-t-3xl p-6 shadow-2xl flex flex-col gap-4 animate-in slide-in-from-bottom duration-250">
-            <div className="flex items-center justify-between pb-3 border-b border-white/10">
-              <span className="text-white font-black text-lg">Menu</span>
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-gray-400 hover:text-white p-1"
-              >
-                <X className="w-5 h-5" />
-              </button>
+        <div
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-md md:hidden flex justify-end animate-in fade-in duration-200"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <div
+            className="w-[82%] max-w-xs h-full bg-[#14151B] border-l border-white/10 p-6 shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div>
+              <div className="flex items-center justify-between pb-4 border-b border-white/10">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-[#FF5500] text-white flex items-center justify-center font-black text-sm">
+                    T
+                  </div>
+                  <span className="text-white font-black text-base tracking-tight">Teller<span className="text-[#FF5500]">.</span></span>
+                </div>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+                  aria-label="Close Menu"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <nav className="flex flex-col gap-2 py-6">
+                <button
+                  onClick={(e) => handleLinkClick(e, 'home')}
+                  className={`text-left py-3 px-4 rounded-xl text-base font-bold transition-colors flex items-center justify-between cursor-pointer ${
+                    currentPage === 'home'
+                      ? 'bg-white/10 text-white'
+                      : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                  }`}
+                >
+                  <span>Home</span>
+                  {currentPage === 'home' && <span className="w-2 h-2 rounded-full bg-[#FF5500]"></span>}
+                </button>
+                <button
+                  onClick={(e) => handleLinkClick(e, 'services')}
+                  className="text-left py-3 px-4 rounded-xl text-base font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-colors cursor-pointer"
+                >
+                  Services
+                </button>
+                <button
+                  onClick={(e) => handleLinkClick(e, 'portfolio')}
+                  className="text-left py-3 px-4 rounded-xl text-base font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-colors cursor-pointer"
+                >
+                  Work
+                </button>
+                <button
+                  onClick={(e) => handleLinkClick(e, 'about')}
+                  className="text-left py-3 px-4 rounded-xl text-base font-bold text-gray-300 hover:bg-white/5 hover:text-white transition-colors cursor-pointer"
+                >
+                  About
+                </button>
+                <button
+                  onClick={(e) => handleLinkClick(e, 'contact')}
+                  className={`text-left py-3 px-4 rounded-xl text-base font-bold transition-colors flex items-center justify-between cursor-pointer ${
+                    currentPage === 'contact'
+                      ? 'bg-[#FF5500] text-white shadow-md shadow-[#FF5500]/30'
+                      : 'text-[#FF5500] hover:bg-white/5'
+                  }`}
+                >
+                  <span>Contact</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </button>
+              </nav>
             </div>
-            <nav className="flex flex-col gap-2 py-2">
-              <button
-                onClick={(e) => handleLinkClick(e, 'home')}
-                className="text-left py-3 px-4 rounded-xl text-lg font-bold text-white hover:bg-white/5 transition-colors flex items-center justify-between"
-              >
-                <span>Home</span>
-                {currentPage === 'home' && <span className="w-2 h-2 rounded-full bg-[#FF5500]"></span>}
-              </button>
-              <button
-                onClick={(e) => handleLinkClick(e, 'services')}
-                className="text-left py-3 px-4 rounded-xl text-lg font-bold text-gray-300 hover:bg-white/5 transition-colors"
-              >
-                Services & Capabilities
-              </button>
-              <button
-                onClick={(e) => handleLinkClick(e, 'portfolio')}
-                className="text-left py-3 px-4 rounded-xl text-lg font-bold text-gray-300 hover:bg-white/5 transition-colors"
-              >
-                Featured Work
-              </button>
-              <button
-                onClick={(e) => handleLinkClick(e, 'about')}
-                className="text-left py-3 px-4 rounded-xl text-lg font-bold text-gray-300 hover:bg-white/5 transition-colors"
-              >
-                About Teller Solutions
-              </button>
+
+            <div className="pt-4 border-t border-white/10 space-y-3">
               <button
                 onClick={(e) => handleLinkClick(e, 'contact')}
-                className="text-left py-3 px-4 rounded-xl text-lg font-bold text-[#FF5500] hover:bg-white/5 transition-colors flex items-center justify-between"
+                className="w-full py-3.5 px-4 rounded-xl bg-[#FF5500] hover:bg-[#E64A00] text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-[#FF5500]/25 transition-all cursor-pointer"
               >
-                <span>Start a Project</span>
-                <ArrowUpRight className="w-5 h-5" />
+                <span>Get in Touch</span>
+                <ArrowUpRight className="w-4 h-4" />
               </button>
-            </nav>
-            <div className="pt-2 text-xs text-center text-gray-400">
-              Teller Solutions • Nairobi, Kenya
+              <div className="text-[11px] font-mono-code text-center text-gray-400">
+                Nairobi, Kenya • EAT (UTC+3)
+              </div>
             </div>
           </div>
         </div>
