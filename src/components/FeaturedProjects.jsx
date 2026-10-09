@@ -38,6 +38,30 @@ export default function FeaturedProjects() {
       image: '/assets/youthspark.jpg',
       metrics: ['Live Event Telemetry', 'Instant Ticket Pass Flow', 'Interactive Schedules'],
       tags: ['Next.js', 'Cloud Infrastructure', 'Event API', 'Mobile-First', 'GraphQL']
+    },
+    {
+      id: 'abis',
+      number: '04',
+      title: 'Adaptive Blood Infrastructure System',
+      category: 'HealthTech & Cold-Chain Telemetry',
+      tagline: 'Every Unit of Blood, Exactly Where It’s Needed',
+      description: 'An adaptive healthcare infrastructure platform engineering real-time blood inventory tracking, cold-chain telemetry, and emergency supply distribution across health networks.',
+      url: 'https://terumoweb-production.up.railway.app/',
+      image: '/assets/abis.jpg',
+      metrics: ['Real-Time Blood Telemetry', 'Cold-Chain Monitoring', 'Facility Command Center'],
+      tags: ['Next.js', 'Railway', 'Healthcare Telemetry', 'FastAPI', 'Tailwind CSS']
+    },
+    {
+      id: 'blessed-annsey',
+      number: '05',
+      title: 'Blessed Annsey Academy',
+      category: 'EdTech & Digital Campus Ecosystem',
+      tagline: 'Shaping Kenya’s Brightest Minds Through Modern Digital Campus Experiences',
+      description: 'A comprehensive digital campus and institutional web platform for Blessed Annsey Academy in Nairobi, streamlining admissions inquiries, curriculum showcases, and community engagement.',
+      url: 'https://blessedannseyacademy.vercel.app/',
+      image: '/assets/blessedannsey.jpg',
+      metrics: ['Admissions Pipeline', 'Interactive Campus Tour', 'Parent Communication Hub'],
+      tags: ['Next.js', 'Vercel', 'Tailwind CSS', 'Responsive Architecture', 'SEO Engine']
     }
   ];
 
